@@ -1,0 +1,6 @@
+NODE_KEY,BP_ROLE,EMAIL_ADDRESS,PHONE_NUMBER,FAX_NUMBER,WEB_ADDRESS,ADDRESS_GUID_NODE_KEY,BP_ID,COMPANY_NAME
+BP001,01,info@techcorp.com,9876543210,0401234567,www.techcorp.com,AD001,BP-1001,TechCorp Solutions
+BP002,02,sales@globalmart.com,9123456789,0407654321,www.globalmart.com,AD002,BP-1002,GlobalMart Pvt Ltd
+BP003,01,contact@innosys.com,9988776655,0409876543,www.innosys.com,AD003,BP-1003,InnoSys Technologies
+BP004,02,hr@brightfuture.com,9112233445,0403456789,www.brightfuture.com,AD004,BP-1004,BrightFuture Inc
+BP005,01,admin@skyline.com,9556677889,0408765432,www.skyline.com,AD005,BP-1005,Skyline Enterprises
