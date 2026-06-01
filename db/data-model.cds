@@ -65,7 +65,7 @@ context master {
         bandId: String(8);
         bankName:String(64);
     }
-}
+} 
 context tranasation {
     entity purchaseOrder : commons.Amount {
         key NODE_KEY : commons.id_type;

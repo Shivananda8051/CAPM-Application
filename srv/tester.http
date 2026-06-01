@@ -1,0 +1,84 @@
+### Get the service document
+
+http://localhost:4004/odata/v4/catalog
+
+### Get the metadata document
+http://localhost:4004/odata/v4/catalog/$metadata
+
+### Get the entity set "EmployeSet"
+http://localhost:4004/odata/v4/catalog/employeSet
+
+### Get the entity with top 2
+http://localhost:4004/odata/v4/catalog/employeSet?$top=2
+
+### Get the entity with top 2 and skip 1
+http://localhost:4004/odata/v4/catalog/employeSet?$top=2&$skip=1
+
+### Get the entity with filter
+http://localhost:4004/odata/v4/catalog/employeSet?$filter=salaryAmount gt 90000
+
+### count the entity
+http://localhost:4004/odata/v4/catalog/employeSet/$count
+
+### Get the entity with key 
+http://localhost:4004/odata/v4/catalog/employeSet/7d4d4a74-760b-4438-be2c-8a8450f1a352
+
+### Get the entity POs
+http://localhost:4004/odata/v4/catalog/Pos
+
+### Get the entity POs with id
+http://localhost:4004/odata/v4/catalog/Pos/POI001?$expand=PARTNER_GUID
+
+
+### creae a new entity
+POST http://localhost:4004/odata/v4/catalog/employeSet
+Content-Type: application/json
+Accept: application/json
+
+{
+  "nameFirst": "Shivananda",
+  "nameMiddle": "Ramesh",
+  "nameLast": "Kupnoor",
+  "nameInitials": "SRK",
+  "sex": "M",
+  "language": "EN",
+  "phoneNumber": "9876543210",
+  "email": "shivananda.kupnoor@example.com",
+  "loginName": "shiv.kupnoor",
+  "Currency_code": "INR",
+  "salaryAmount": 75000,
+  "accountNumber": "123456789012",
+  "bandId": "BND1001",
+  "bankName": "State Bank of India"
+}
+
+
+### GET the entity 
+GET http://localhost:4004/odata/v4/catalog/employeSet
+
+### PATCH the entity
+PATCH http://localhost:4004/odata/v4/catalog/employeSet/7d4d4a74-760b-4438-be2c-8a8450f1a352
+Content-Type: application/json
+Accept: application/json
+
+{
+  "salaryAmount": 80000
+}
+
+### calling action
+POST http://localhost:4004/odata/v4/catalog/Pos/POI001/boost
+Content-Type: application/json
+
+{}
+
+### calling action with parameters
+POST http://localhost:4004/odata/v4/catalog/Pos/POI001/largestOrder
+Content-Type: application/json
+
+{}
+
+### calling function with parameters(Functions are called with GET method)
+GET http://localhost:4004/odata/v4/catalog/Pos/POI001/largestOrder
+Content-Type: application/json
+
+{}

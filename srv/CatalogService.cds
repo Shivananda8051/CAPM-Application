@@ -6,6 +6,10 @@ service CatalogService {
     entity AddressSet as projection on master.address;
     entity employeSet as projection on master.employees;
     entity ProductSet as projection on master.product;
-    entity Pos as projection on tranasation.poitems;
+    entity Pos as projection on tranasation.poitems 
+    actions  {
+        action boost() returns Pos;
+        function largestOrder() returns Pos;
+    };
     entity POItems as projection on tranasation.poitems;
 }
