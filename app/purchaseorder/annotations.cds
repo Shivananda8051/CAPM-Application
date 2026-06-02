@@ -102,10 +102,8 @@ using CatalogService as service from '../../srv/CatalogService';
 // };
 
 annotate service.Pos with @(UI.SelectionFields: [
-    'NODE_KEY',
-    'CURRENCY_code',
-    'GROSS_AMOUNT',
-    'NET_AMOUNT',
-    'TAX_AMOUNT',
-    'PO_ITEM_POS',
+    PO_ITEM_POS,
+    PARTNER_KEY.PARTNER_GUID.COMPANY_NAME,
+    PARTNER_KEY.PARTNER_GUID.ADDRESS_GUID.COUNTRY,
+    GROSS_AMOUNT,
 ]);
