@@ -1,6 +1,12 @@
 module.exports = cds.service.impl(async function() {
 
-    const {Pos} = this.entities;
+    const {Pos, EmployeeSet} = this.entities;
+
+    this.before(['CREATE','PATCH'], EmployeeSet,(req)=> {
+        if(parseFloat(req.data.salaryAmount)>= 100000) {
+            req.error(500,'Hay you cant insert this much');
+        }
+    })
 
     this.on('boost', async (req) => {
        try {

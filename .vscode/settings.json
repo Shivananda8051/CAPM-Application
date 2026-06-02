@@ -7,5 +7,10 @@
             "name": "ShivaDB",
             "database": "${workspaceFolder:FirstCAPM}/db.sqlite"
         }
+    ],
+    "sqltools.connectionExplorer.groupConnected": true,
+    "sqltools.tableTreeItemsExpanded": true,
+    "java.project.sourcePaths": [
+        "app/purchaseorder/webapp/i18n"
     ]
 }

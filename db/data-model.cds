@@ -49,7 +49,7 @@ context master {
         DIM_UNIT : String(5);
 
     }
-    entity employees : cuid{
+    entity Employee : cuid{
         nameFirst : String(40);
         nameMiddle : String(40);
         nameLast : String(40);

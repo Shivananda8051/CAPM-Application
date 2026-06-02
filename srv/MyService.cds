@@ -1,16 +1,17 @@
-// using { shivadb.master as master , shivadb.trans as transation } from '../db/demo';
+using { shiva.cds } from '../db/CDSViews';
+using { shiva.db.master } from '../db/data-model';
 
 
-// service MyService {
 
-//     entity StudentSet as projection on master.Student;
-//     entity StandardSet as projection on master.Standards;
-//     entity BookSet as projection on master.Books;
-//     entity BookRenalSet as projection on transation.rentals;
+service MyService @(path:'MyService') {
+  function shiva(name: String(20)) returns String;
+  entity ProductOrderSet as projection on cds.CDSViews.ProductOrders{
+    *,
+    ProductOrders,
+  };
+  entity ReadEmployeSrv as projection on master.Employee{
+    *
+  };
 
-// }
-
-service MyService @(path:'Myservice') {
-    function shiva(name: String(20)) returns String;
 
 }
