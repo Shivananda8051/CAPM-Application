@@ -6,7 +6,7 @@ using {shivadb.commons } from './commons';
 
 context master {
     entity businesspartner {
-        key NODE_KEY: commons.id_type;
+        key NODE_KEY: commons.id_type @title : '{i18n > PARTNER_GUID }';
         BP_ROLE: String(2);
         EMAIL_ADDRESS: String(25);
         PHONE_NUMBER : String(25);
@@ -14,15 +14,15 @@ context master {
         WEB_ADDRESS: String(25); 
         ADDRESS_GUID : Association to address;
         BP_ID: String(42);
-        COMPANY_NAME: String(50);
+        COMPANY_NAME: String(50) @title : '{i18n > COMPANY_NAME }';
     }
     entity address{
-        key NODE_KEY: commons.id_type;
-        CITY : String(32);
+        key NODE_KEY: commons.id_type @title : '{i18n > ADDRESS_GUID }';
+        CITY : String(32) @title : '{i18n > CITY }';
         POSTAL_CODE: String(32);
         STREET : String(32);
         BUILDING: String(32);
-        COUNTRY: String(35);
+        COUNTRY: String(35) @title : '{i18n > COUNTRY }';
         ADDRESS_TYPE : String(32);
         VAL_START_DATE: Date;
         VAL_END_DATE : Date;
@@ -31,7 +31,7 @@ context master {
         businesspartner : Association to one businesspartner on businesspartner.ADDRESS_GUID = $self;
     }
     entity product {
-        key NODE_KEY: commons.id_type;
+        key NODE_KEY: commons.id_type @title : '{i18n > PRODUCT_GUID }';
         PRODUCT_ID: String(25);
         TYPE_CODE: String(22);
         CATEGORY : String(32);
@@ -41,7 +41,7 @@ context master {
         MEASURE_UNIT : String(32);
         WEIGHT_UNIT : String(5);
         WEIGHT_MEASURE: Decimal(5,2);
-        CURRENCY_CODE : String(4);
+        CURRENCY_CODE : String(4) @title : '{i18n > CURRENCY }';
         PRICE : Decimal(15,2);
         WIDTH: Decimal(5,2);
         HEIGHT : Decimal(5,2);
@@ -68,7 +68,7 @@ context master {
 } 
 context tranasation {
     entity purchaseOrder : commons.Amount {
-        key NODE_KEY : commons.id_type;
+        key NODE_KEY : commons.id_type @title : '{i18n > PO_GUID }';
         PO_ID : String(10);
         PARTNER_GUID: Association to master.businesspartner;
         LIFECYCLE_STATUS: String(1);
@@ -76,9 +76,9 @@ context tranasation {
         Items:Association to many poitems on Items.PARTNER_KEY=$self;
     }
     entity poitems : commons.Amount {
-        key NODE_KEY:commons.id_type;
+        key NODE_KEY:commons.id_type @title : '{i18n > NODE_KEY }';
         PARTNER_KEY : Association to purchaseOrder;
-        PO_ITEM_POS: Integer;
+        PO_ITEM_POS: Integer @title : '{i18n > PO_ITEM_POS }';
         PRODUCT_GUID: Association to master.product;
     }
 }

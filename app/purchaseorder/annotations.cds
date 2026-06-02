@@ -101,8 +101,11 @@ using CatalogService as service from '../../srv/CatalogService';
 //     }
 // };
 
-annotate service.Pos with @(
-    UI.SelectionFields : [
-        NODE_KEY, PO_ITEM_POS,GROSS_AMOUNT,TAX_AMOUNT
-        ]
-)
+annotate service.Pos with @(UI.SelectionFields: [
+    'NODE_KEY',
+    'CURRENCY_code',
+    'GROSS_AMOUNT',
+    'NET_AMOUNT',
+    'TAX_AMOUNT',
+    'PO_ITEM_POS',
+]);
