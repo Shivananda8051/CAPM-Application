@@ -89,7 +89,7 @@
           "target": "PosList"
         },
         {
-          "pattern": "Pos({key}):?query:",
+          "pattern": "POs({key}):?query:",
           "name": "PosObjectPage",
           "target": "PosObjectPage"
         }
@@ -101,10 +101,10 @@
           "name": "sap.fe.templates.ListReport",
           "options": {
             "settings": {
-              "contextPath": "/Pos",
+              "contextPath": "/POs",
               "variantManagement": "Page",
               "navigation": {
-                "Pos": {
+                "POs": {
                   "detail": {
                     "route": "PosObjectPage"
                   }
@@ -127,7 +127,7 @@
           "options": {
             "settings": {
               "editableHeaderContent": false,
-              "contextPath": "/Pos"
+              "contextPath": "/POs"
             }
           }
         }
