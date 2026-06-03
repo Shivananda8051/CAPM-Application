@@ -18,7 +18,7 @@ module.exports = cds.service.impl(async function () {
 
             console.log('boost action called');
 
-            const { NODE_KEY } = req.params[0];
+            const ID = req.params[0].ID;
 
             const tx = cds.tx(req);
 
@@ -26,7 +26,7 @@ module.exports = cds.service.impl(async function () {
                 .with({
                     GROSS_AMOUNT: { '+=': 20000 }
                 })
-                .where({ NODE_KEY });
+                .where({ ID });
 
             return 'Boost Success';
 
