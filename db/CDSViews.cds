@@ -1,4 +1,4 @@
-namespace shiva.cds;
+namespace shiva.view;
 
 using { shiva.db.master as master, shiva.db.tranasation} from '../db/data-model';
 

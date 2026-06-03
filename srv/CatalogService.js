@@ -1,29 +1,61 @@
-module.exports = cds.service.impl(async function() {
+const cds = require('@sap/cds');
 
-    const {Pos, EmployeeSet} = this.entities;
+module.exports = cds.service.impl(async function () {
 
-    this.before(['CREATE','PATCH'], EmployeeSet,(req)=> {
-        if(parseFloat(req.data.salaryAmount)>= 100000) {
-            req.error(500,'Hay you cant insert this much');
+    const { POs, EmployeeSet } = this.entities;
+
+    this.before(['CREATE', 'PATCH'], EmployeeSet, (req) => {
+
+        if (parseFloat(req.data.salaryAmount) >= 100000) {
+            req.error(500, 'Hey you cant insert this much');
         }
-    })
+
+    });
 
     this.on('boost', async (req) => {
-       try {
-            const {ID} = req.params[0];
+
+        try {
+
             console.log('boost action called');
+
+            const { NODE_KEY } = req.params[0];
+
             const tx = cds.tx(req);
-            await tx.update(Pos).with({
-                GROSS_AMOUNT : {'+=': 20000}
-            }).where(ID);
-       } catch (error) {
-        console.error('Error in boost action:', error);
-       }
+
+            await tx.update(POs)
+                .with({
+                    GROSS_AMOUNT: { '+=': 20000 }
+                })
+                .where({ NODE_KEY });
+
+            return 'Boost Success';
+
+        } catch (error) {
+
+            console.error('Error in boost action:', error);
+
+            req.error(500, error.message);
+
+        }
+
     });
 
     this.on('largestOrder', async (req) => {
-       const tx = cds.tx(req);
-       const myrecord = await tx.read(Pos).orderBy({GROSS_AMOUNT: 'desc'}).limit(1);
-       return myrecord[0];
+
+        const tx = cds.tx(req);
+
+        const myrecord = await tx.read(POs)
+            .orderBy({ GROSS_AMOUNT: 'desc' })
+            .limit(1);
+
+        return myrecord[0];
+
     });
+
+    this.on('getDefaultValues',(req,res)=>{
+        return {
+            "OVERALL_STATUS": "NE",
+        }
+    })
+
 });

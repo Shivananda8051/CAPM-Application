@@ -14,10 +14,10 @@ type AmountT : Decimal(10,2)@(
 );
 
 aspect Amount : {
-    CURRENCY : Currency;
-    GROSS_AMOUNT : AmountT @(title: 'Gross Amount');
-    NET_AMOUNT: AmountT @(title: 'Net Amount');
-    TAX_AMOUNT : AmountT @(title: 'Tax Amount');
+    CURRENCY : Currency @(title: '{i18n>CURRENCY}');
+    GROSS_AMOUNT : AmountT @(title: '{i18n>GROSS_AMOUNT}');
+    NET_AMOUNT: AmountT @(title: '{i18n>NET_AMOUNT}');
+    TAX_AMOUNT : AmountT @(title: '{i18n>TAX_AMOUNT}');
 }; 
 
 type id_type : String(32);
