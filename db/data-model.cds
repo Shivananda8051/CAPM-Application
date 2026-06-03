@@ -76,7 +76,10 @@ context tranasation {
         Items:Composition of many poitems on Items.PARTNER_KEY=$self;
     }
     entity poitems : cuid, commons.Amount {
+<<<<<<< HEAD
         //key NODE_KEY:commons.id_type ;
+=======
+>>>>>>> refs/remotes/origin/main
         PARTNER_KEY : Association to purchaseOrder;
         PO_ITEM_POS: Integer @title: '{i18n>PO_ITEM_POS}';
         PRODUCT_GUID: Association to master.product;
