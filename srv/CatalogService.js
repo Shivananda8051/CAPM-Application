@@ -35,19 +35,20 @@ module.exports = cds.service.impl(async function () {
 
             const { purchaseOrder } = cds.entities('shiva.db.tranasation');
 
-            const po = await SELECT.one.from(purchaseOrder).where({ ID }).columns('GROSS_AMOUNT');
-            const currentAmount = po?.GROSS_AMOUNT || 0;
+            const po = await SELECT.one.from(purchaseOrder).where({ ID });
+            if (!po) return req.error(404, 'Purchase order not found');
 
             await UPDATE(purchaseOrder)
-                .set({ GROSS_AMOUNT: currentAmount + 20000 })
+                .set({ GROSS_AMOUNT: (po.GROSS_AMOUNT || 0) + 20000 })
                 .where({ ID });
 
-            return await SELECT.one.from(POs).where({ ID });
+            const updated = await SELECT.one.from(purchaseOrder).where({ ID });
+            updated.IsActiveEntity = true;
+            return updated;
 
         } catch (error) {
 
             console.error('Error in boost action:', error);
-
             req.error(500, error.message);
 
         }
@@ -56,9 +57,9 @@ module.exports = cds.service.impl(async function () {
 
     this.on('largestOrder', async (req) => {
 
-        const tx = cds.tx(req);
+        const { purchaseOrder } = cds.entities('shiva.db.tranasation');
 
-        const myrecord = await tx.read(POs)
+        const myrecord = await SELECT.from(purchaseOrder)
             .orderBy({ GROSS_AMOUNT: 'desc' })
             .limit(1);
 
@@ -66,7 +67,7 @@ module.exports = cds.service.impl(async function () {
 
     });
 
-    this.on('getDefaultValues',(req,res)=>{
+    this.on('getDefaultValues', (req, res) => {
         return {
             "OVERALL_STATUS": "NE",
         }
