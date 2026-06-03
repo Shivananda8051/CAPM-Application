@@ -20,16 +20,16 @@ module.exports = cds.service.impl(async function () {
 
             const ID = req.params[0].ID;
 
-            const tx = cds.tx(req);
+            const { purchaseOrder } = cds.entities('shiva.db.tranasation');
 
-            const po = await tx.read(POs).where({ ID }).columns('GROSS_AMOUNT');
-            const currentAmount = po[0]?.GROSS_AMOUNT || 0;
+            const po = await SELECT.one.from(purchaseOrder).where({ ID }).columns('GROSS_AMOUNT');
+            const currentAmount = po?.GROSS_AMOUNT || 0;
 
-            await tx.update(POs)
-                .with({ GROSS_AMOUNT: currentAmount + 20000 })
+            await UPDATE(purchaseOrder)
+                .set({ GROSS_AMOUNT: currentAmount + 20000 })
                 .where({ ID });
 
-            return 'Boost Success';
+            return await SELECT.one.from(POs).where({ ID });
 
         } catch (error) {
 
