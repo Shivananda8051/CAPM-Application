@@ -46,7 +46,7 @@ module.exports = cds.service.impl(async function () {
             const po = await SELECT.one.from(purchaseOrder).where({ ID });
             if (!po) return req.error(404, 'Purchase order not found');
 
-            const newAmount = (po.GROSS_AMOUNT || 0) + 20000;
+            const newAmount = parseFloat(po.GROSS_AMOUNT || 0) + 20000;
             await UPDATE(purchaseOrder)
                 .set({ GROSS_AMOUNT: newAmount })
                 .where({ ID });
