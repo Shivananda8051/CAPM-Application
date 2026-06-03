@@ -70,15 +70,15 @@ context tranasation {
     entity purchaseOrder : commons.Amount {
         key NODE_KEY : commons.id_type @title: '{i18n>NODE_KEY}';
         PO_ID : String(10) @title: '{i18n>PO_ID}';
-        PARTNER_GUID: Association to master.businesspartner;
+        PARTNER_GUID: Association to master.businesspartner @title: '{i18n>PARTNER_GUID}';
         LIFECYCLE_STATUS: String(1);
-        OVERALL_STATUS: String(2);
+        OVERALL_STATUS: String(2) @title: '{i18n>OVERALL_STATUS}';
         Items:Association to many poitems on Items.PARTNER_KEY=$self;
     }
     entity poitems : commons.Amount {
         key NODE_KEY:commons.id_type @title : '{i18n>NODE_KEY}';
         PARTNER_KEY : Association to purchaseOrder;
-        PO_ITEM_POS: Integer;
-        PRODUCT_GUID: Association to master.product;
+        PO_ITEM_POS: Integer @title: '{i18n>PO_ITEM_POS}';
+        PRODUCT_GUID: Association to master.product @title: '{i18n>PRODUCT_GUID}';
     }
 }
