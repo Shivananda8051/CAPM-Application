@@ -49,21 +49,21 @@ context CDSViews {
 
     define view![itemView] as 
         select from tranasation.poitems {
-            PARTNER_KEY.PARTNER_GUID.NODE_KEY as ![vendorId],
-            PRODUCT_GUID.NODE_KEY as ![productId],
+            key PARTNER_KEY.PARTNER_GUID.NODE_KEY as ![vendorId],
+            key PRODUCT_GUID.NODE_KEY as ![productId],
             CURRENCY as ![Currency],
             GROSS_AMOUNT as ![GrossAmount],
             NET_AMOUNT as ![NetAmount],
             TAX_AMOUNT as ![TaxAmount],
             PARTNER_KEY.OVERALL_STATUS as ![overallStatus],
-        }
+        };
 
     define view ProductOrders as select from master.product 
     mixin {
         ORDERS: Association[*] to itemView on ORDERS.productId = $projection.ProductKey
     } into {
          
-        NODE_KEY as ![ProductKey],
+        key NODE_KEY as ![ProductKey],
         DESCRIPTION as ![ProductName],
         PRICE as ![Price],
         CURRENCY_CODE as ![Currency],

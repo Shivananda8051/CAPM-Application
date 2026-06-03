@@ -11,11 +11,20 @@
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
+    "@cap-js/hana": "^2",
     "@sap/cds": "^9.9.1",
     "@sap/cds-odata-v2-adapter-proxy": "^1.9.21"
   },
   "devDependencies": {
     "@cap-js/sqlite": "^2.4.0",
     "sqlite3": "^6.0.1"
+  },
+  "sapux": [
+    "app/purchaseorder"
+  ],
+  "cds": {
+    "requires": {
+      "db": "hana"
+    }
   }
 }
