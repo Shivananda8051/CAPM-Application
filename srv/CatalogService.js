@@ -4,6 +4,19 @@ module.exports = cds.service.impl(async function () {
 
     const { POs, EmployeeSet } = this.entities;
 
+    const statusMap = { 'NE': 'New', 'OK': 'Approved', 'CL': 'Closed' };
+    const colorMap = { 'NE': 0, 'OK': 2, 'CL': 3 };
+
+    this.after('READ', POs, (data) => {
+        const items = Array.isArray(data) ? data : [data];
+        for (const po of items) {
+            if (po) {
+                po.OverallStatusText = statusMap[po.OVERALL_STATUS] || 'In Process';
+                po.ColorCoding = colorMap[po.OVERALL_STATUS] ?? 1;
+            }
+        }
+    });
+
     this.before(['CREATE', 'PATCH'], EmployeeSet, (req) => {
 
         if (parseFloat(req.data.salaryAmount) >= 100000) {

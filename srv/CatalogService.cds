@@ -16,19 +16,8 @@ service CatalogService @(path:'CatalogService') {
         Items,
         PARTNER_GUID.COMPANY_NAME as COMPANY_NAME,
         PARTNER_GUID.ADDRESS_GUID.COUNTRY as COUNTRY,
-        case OVERALL_STATUS
-            when 'NE' then 'New'
-            when 'OK' then 'Approved'
-            when 'CL' then 'Closed'
-            else 'In Process'
-        end as OverallStatusText : String(20),
-
-        case OVERALL_STATUS
-            when 'NE' then 0
-            when 'OK' then 2
-            when 'CL' then 3
-            else 1
-        end as ColorCoding : Integer
+        virtual null as OverallStatusText : String(20),
+        virtual null as ColorCoding : Integer
 
     } actions {
         @cds.odata.bindingparameter.name:'_shiva'
