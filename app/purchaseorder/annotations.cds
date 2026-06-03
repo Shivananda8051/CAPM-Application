@@ -2,7 +2,7 @@ using CatalogService as service from '../../srv/CatalogService';
 
 annotate service.POs with @(
 
-    UI.SelectionFields: [
+    UI.SelectionFields    : [
         NODE_KEY,
         PO_ID,
         COMPANY_NAME,
@@ -10,39 +10,46 @@ annotate service.POs with @(
         NET_AMOUNT,
         TAX_AMOUNT
     ],
-    UI.LineItem: [
+
+    UI.LineItem           : [
+
         {
             $Type: 'UI.DataField',
             Value: PO_ID
         },
+
         {
             $Type: 'UI.DataField',
             Value: COMPANY_NAME,
         },
+
         {
             $Type: 'UI.DataField',
             Value: COUNTRY,
-
         },
+
         {
             $Type: 'UI.DataField',
             Value: GROSS_AMOUNT,
         },
+
         {
-            $Type: 'UI.DataFieldForAction',
+            $Type : 'UI.DataFieldForAction',
             Action: 'CatalogService.boost',
             Label : 'Boost',
             Inline: true,
         },
 
         {
-            $Type: 'UI.DataField',
-            Value: OverallStatusText,
+            $Type      : 'UI.DataField',
+            Value      : OverallStatusText,
             Criticality: ColorCoding,
-        },
+        }
 
     ],
-    UI.HeaderInfo: {
+
+    UI.HeaderInfo         : {
+
         TypeName      : 'Purchase Order',
         TypeNamePlural: 'Purchase Orders',
 
@@ -55,16 +62,28 @@ annotate service.POs with @(
             $Type: 'UI.DataField',
             Value: COMPANY_NAME,
         },
-        ImageUrl: 'https://sap.github.io/ui5-webcomponents/assets/images/HT-1000.png'
+
+        ImageUrl      : 'https://sap.github.io/ui5-webcomponents/assets/images/HT-1000.png'
     },
 
-    UI.Facets: [{
-        $Type : 'UI.ReferenceFacet',
-        Label : 'General Information',
-        Target: '@UI.FieldGroup#General'
-    }],
+    UI.Facets             : [
+
+        {
+            $Type : 'UI.ReferenceFacet',
+            Label : 'General Information',
+            Target: '@UI.FieldGroup#General'
+        },
+
+        {
+            $Type : 'UI.ReferenceFacet',
+            Label : 'Items',
+            Target: 'Items/@UI.LineItem'
+        }
+
+    ],
 
     UI.FieldGroup #General: {
+
         $Type: 'UI.FieldGroupType',
 
         Data : [
@@ -74,17 +93,10 @@ annotate service.POs with @(
                 Label: 'Purchase Order',
                 Value: PO_ID
             },
-
             {
                 $Type: 'UI.DataField',
-                Label: 'Company Name',
-                Value: COMPANY_NAME
-            },
-
-            {
-                $Type: 'UI.DataField',
-                Label: 'Country',
-                Value: COUNTRY
+                Label: 'Overall Status',
+                Value: OVERALL_STATUS
             },
 
             {
@@ -104,14 +116,259 @@ annotate service.POs with @(
                 Label: 'Tax Amount',
                 Value: TAX_AMOUNT
             },
+            {
+                $Type: 'UI.DataField',
+                Label: 'Country',
+                Value: COUNTRY
+            },
+            {
+                $Type: 'UI.DataField',
+                Label: 'Company Name',
+                Value: COMPANY_NAME
+            },
+
+
+        ]
+    }
+
+
+);
+
+annotate service.POItems with @(
+
+    UI.LineItem               : [
+
+        {
+            $Type: 'UI.DataField',
+            Label: 'Item Position',
+            Value: PO_ITEM_POS
+        },
+
+        {
+            $Type: 'UI.DataField',
+            Label: 'Product',
+            Value: PRODUCT_GUID.DESCRIPTION
+        },
+
+        {
+            $Type: 'UI.DataField',
+            Label: 'Gross Amount',
+            Value: GROSS_AMOUNT
+        },
+
+        {
+            $Type: 'UI.DataField',
+            Label: 'Net Amount',
+            Value: NET_AMOUNT
+        },
+
+        {
+            $Type: 'UI.DataField',
+            Label: 'Tax Amount',
+            Value: TAX_AMOUNT
+        }
+
+    ],
+
+    UI.Identification         : [
+
+    {
+        $Type: 'UI.DataField',
+        Value: PO_ITEM_POS
+    }
+
+    ],
+
+    UI.HeaderInfo             : {
+
+        TypeName      : 'Purchase Order Item',
+        TypeNamePlural: 'Purchase Order Items',
+
+        Title         : {
+            $Type: 'UI.DataField',
+            Value: PO_ITEM_POS,
+        },
+
+        Description   : {
+            $Type: 'UI.DataField',
+            Value: PRODUCT_GUID.DESCRIPTION,
+        },
+
+        ImageUrl      : 'https://sap.github.io/ui5-webcomponents/assets/images/HT-1000.png'
+    },
+
+    UI.Facets                 : [
+
+    {
+        $Type : 'UI.CollectionFacet',
+        Label : 'Item Information',
+
+        Facets: [
 
             {
-                $Type      : 'UI.DataField',
-                Label      : 'Status',
-                Value      : OverallStatusText,
-                Criticality: ColorCoding
+                $Type : 'UI.ReferenceFacet',
+                Label : 'Details',
+                Target: '@UI.FieldGroup#ItemDetails'
+            },
+
+            {
+                $Type : 'UI.ReferenceFacet',
+                Label : 'Pricing',
+                Target: '@UI.FieldGroup#Pricing'
+            },
+
+            {
+                $Type : 'UI.ReferenceFacet',
+                Label : 'Product Details',
+                Target: '@UI.FieldGroup#Product'
             }
 
         ]
     }
+
+    ],
+
+    UI.FieldGroup #ItemDetails: {
+
+        $Type: 'UI.FieldGroupType',
+
+        Data : [
+
+            {
+                $Type: 'UI.DataField',
+                Label: 'Item Position',
+                Value: PO_ITEM_POS,
+            },
+
+            {
+                $Type: 'UI.DataField',
+                Label: 'Product',
+                Value: PRODUCT_GUID.DESCRIPTION,
+            }
+
+        ]
+    },
+
+    UI.FieldGroup #Pricing    : {
+
+        $Type: 'UI.FieldGroupType',
+
+        Data : [
+
+            {
+                $Type: 'UI.DataField',
+                Label: 'Gross Amount',
+                Value: GROSS_AMOUNT,
+            },
+
+            {
+                $Type: 'UI.DataField',
+                Label: 'Net Amount',
+                Value: NET_AMOUNT,
+            },
+
+            {
+                $Type: 'UI.DataField',
+                Label: 'Tax Amount',
+                Value: TAX_AMOUNT,
+            }
+
+        ]
+    },
+
+    UI.FieldGroup #Product    : {
+
+        $Type: 'UI.FieldGroupType',
+
+        Data : [
+
+            {
+                $Type: 'UI.DataField',
+                Label: 'Product Name',
+                Value: PRODUCT_GUID.DESCRIPTION,
+            },
+
+            {
+                $Type: 'UI.DataField',
+                Label: 'Product ID',
+                Value: PRODUCT_GUID.PRODUCT_ID,
+            },
+
+            {
+                $Type: 'UI.DataField',
+                Label: 'Category',
+                Value: PRODUCT_GUID.CATEGORY,
+            }
+
+        ]
+    }
+
 );
+
+
+annotate service.POs with {
+
+    PARTNER_GUID @(
+        Common.Text     : COMPANY_NAME,
+
+        Common.ValueList: {
+            $Type         : 'Common.ValueListType',
+            CollectionPath: 'BusinesspatnerSet',
+
+            Parameters    : [
+
+                {
+                    $Type            : 'Common.ValueListParameterInOut',
+                    LocalDataProperty: PARTNER_GUID_NODE_KEY,
+                    ValueListProperty: 'NODE_KEY'
+                },
+
+                {
+                    $Type            : 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty: 'COMPANY_NAME'
+                },
+
+                {
+                    $Type            : 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty: 'BP_ID'
+                }
+
+            ]
+        }
+    );
+
+};
+
+annotate service.POItems with {
+
+    PRODUCT_GUID @(
+
+        Common.Text     : PRODUCT_GUID.DESCRIPTION,
+
+        Common.ValueList: {
+            $Type         : 'Common.ValueListType',
+            CollectionPath: 'ProductSet',
+
+            Parameters    : [
+
+                {
+                    $Type            : 'Common.ValueListParameterInOut',
+                    LocalDataProperty: PRODUCT_GUID_NODE_KEY,
+                    ValueListProperty: 'NODE_KEY'
+                },
+
+                {
+                    $Type            : 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty: 'DESCRIPTION'
+                },
+
+                {
+                    $Type            : 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty: 'PRODUCT_ID'
+                }
+
+            ]
+        }
+    );
+
+};

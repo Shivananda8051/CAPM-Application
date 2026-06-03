@@ -52,4 +52,10 @@ module.exports = cds.service.impl(async function () {
 
     });
 
+    this.on('getDefaultValues',(req,res)=>{
+        return {
+            "OVERALL_STATUS": "NE",
+        }
+    })
+
 });
