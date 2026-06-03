@@ -14,7 +14,7 @@ context master {
         WEB_ADDRESS: String(25); 
         ADDRESS_GUID : Association to address;
         BP_ID: String(42);
-        COMPANY_NAME: String(50) @title : '{i18n > COMPANY_NAME }';
+        COMPANY_NAME: String(50) @title : '{i18n>COMPANY_NAME}';
     }
     entity address{
         key NODE_KEY: commons.id_type;
@@ -35,7 +35,7 @@ context master {
         PRODUCT_ID: String(25);
         TYPE_CODE: String(22);
         CATEGORY : String(32);
-        DESCRIPTION: localized String(200);
+        DESCRIPTION: localized String(200) @title: '{i18n > PRODUCT_NAME}';
         SUPPLIER_GUID: Association to master.businesspartner;
         TAX_TARFIC_CODE: Integer;
         MEASURE_UNIT : String(32);
@@ -68,15 +68,15 @@ context master {
 } 
 context tranasation {
     entity purchaseOrder : commons.Amount {
-        key NODE_KEY : commons.id_type;
-        PO_ID : String(10);
+        key NODE_KEY : commons.id_type @title: '{i18n>NODE_KEY}';
+        PO_ID : String(10) @title: '{i18n>PO_ID}';
         PARTNER_GUID: Association to master.businesspartner;
         LIFECYCLE_STATUS: String(1);
         OVERALL_STATUS: String(2);
         Items:Association to many poitems on Items.PARTNER_KEY=$self;
     }
     entity poitems : commons.Amount {
-        key NODE_KEY:commons.id_type;
+        key NODE_KEY:commons.id_type @title : '{i18n>NODE_KEY}';
         PARTNER_KEY : Association to purchaseOrder;
         PO_ITEM_POS: Integer;
         PRODUCT_GUID: Association to master.product;

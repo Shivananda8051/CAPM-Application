@@ -6,10 +6,14 @@ service CatalogService @(path:'CatalogService') {
     entity AddressSet as projection on master.address;
     entity EmployeeSet as projection on master.Employee;
     entity ProductSet as projection on master.product;
-    entity POs as projection on tranasation.poitems 
+    entity POItems as projection on tranasation.poitems 
     actions  {
         action boost() returns POs;
         function largestOrder() returns POs;
     };  
-    entity POItems as projection on tranasation.poitems;
+    entity POs as projection on tranasation.poitems {
+            *,
+            PARTNER_KEY.PO_ID as PO_ID,
+            PARTNER_KEY.PARTNER_GUID.COMPANY_NAME as COMPANY_NAME,
+    };
 }
