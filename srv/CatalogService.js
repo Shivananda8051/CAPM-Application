@@ -22,10 +22,11 @@ module.exports = cds.service.impl(async function () {
 
             const tx = cds.tx(req);
 
+            const po = await tx.read(POs).where({ ID }).columns('GROSS_AMOUNT');
+            const currentAmount = po[0]?.GROSS_AMOUNT || 0;
+
             await tx.update(POs)
-                .with({
-                    GROSS_AMOUNT: { '+=': 20000 }
-                })
+                .with({ GROSS_AMOUNT: currentAmount + 20000 })
                 .where({ ID });
 
             return 'Boost Success';
