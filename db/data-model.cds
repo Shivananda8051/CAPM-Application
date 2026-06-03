@@ -22,7 +22,7 @@ context master {
         POSTAL_CODE: String(32);
         STREET : String(32);
         BUILDING: String(32);
-        COUNTRY: String(35);
+        COUNTRY: String(35) @title: '{i18n>COUNTRY}';
         ADDRESS_TYPE : String(32);
         VAL_START_DATE: Date;
         VAL_END_DATE : Date;
