@@ -6,10 +6,10 @@ service CatalogService @(path:'CatalogService') {
     entity AddressSet as projection on master.address;
     entity EmployeeSet as projection on master.Employee;
     entity ProductSet as projection on master.product;
-    entity Pos as projection on tranasation.poitems 
+    entity POs as projection on tranasation.poitems 
     actions  {
-        action boost() returns Pos;
-        function largestOrder() returns Pos;
-    };
+        action boost() returns POs;
+        function largestOrder() returns POs;
+    };  
     entity POItems as projection on tranasation.poitems;
 }
