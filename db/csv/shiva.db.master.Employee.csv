@@ -1,0 +1,6 @@
+ID,nameFirst,nameMiddle,nameLast,nameInitials,sex,language,phoneNumber,email,loginName,Currency_code,salaryAmount,accountNumber,bandId,bankName
+e01a1b2c-1111-4aaa-bbbb-000000000001,Rahul,,Sharma,RS,M,EN,9876543210,rahul.sharma@mail.com,rsharma,INR,75000.00,100200300401,B3,HDFC Bank
+e01a1b2c-2222-4aaa-bbbb-000000000002,Priya,K,Nair,PKN,F,EN,9123456780,priya.nair@mail.com,pnair,INR,85000.00,200300400502,B4,ICICI Bank
+e01a1b2c-3333-4aaa-bbbb-000000000003,Amit,,Verma,AV,M,EN,9988776650,amit.verma@mail.com,averma,INR,65000.00,300400500603,B2,SBI
+e01a1b2c-4444-4aaa-bbbb-000000000004,Sneha,R,Patil,SRP,F,EN,9112233440,sneha.patil@mail.com,spatil,INR,92000.00,400500600704,B5,Axis Bank
+e01a1b2c-5555-4aaa-bbbb-000000000005,Vikram,,Joshi,VJ,M,EN,9556677880,vikram.joshi@mail.com,vjoshi,INR,55000.00,500600700805,B1,Kotak Bank

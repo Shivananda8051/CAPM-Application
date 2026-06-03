@@ -161,6 +161,16 @@
             "settings": {
               "editableHeaderContent": false,
               "contextPath": "/POs",
+              "controlConfiguration": {
+                "Items/@com.sap.vocabularies.UI.v1.LineItem": {
+                  "tableSettings": {
+                    "creationMode": {
+                      "name": "InlineCreationRows",
+                      "createAtEnd": true
+                    }
+                  }
+                }
+              },
               "navigation": {
                 "Items": {
                   "detail": {
