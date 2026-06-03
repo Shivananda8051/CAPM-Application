@@ -12,4 +12,5 @@ service CatalogService @(path:'CatalogService') {
         function largestOrder() returns Pos;
     };
     entity POItems as projection on tranasation.poitems;
+    entity POs as projection on tranasation.purchaseOrder;
 }

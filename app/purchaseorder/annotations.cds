@@ -101,9 +101,9 @@ using CatalogService as service from '../../srv/CatalogService';
 //     }
 // };
 
-annotate service.Pos with @(UI.SelectionFields: [
-    PO_ITEM_POS,
-    PARTNER_KEY.PARTNER_GUID.COMPANY_NAME,
-    PARTNER_KEY.PARTNER_GUID.ADDRESS_GUID.COUNTRY,
+annotate service.POs with @(UI.SelectionFields: [
+    PO_ID,
+    PARTNER_GUID.COMPANY_NAME,
+    PARTNER_GUID.ADDRESS_GUID.COUNTRY,
     GROSS_AMOUNT,
 ]);
