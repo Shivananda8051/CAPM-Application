@@ -79,5 +79,5 @@ context CDSViews {
         City as ![City],
         round(sum(ProductOrders.GrossAmount), 2) as ![TotalGrossAmount],
         count(*) as ![TotalOrders],
-    } group by ProductName, Country, ProductOrders.Currency;
+    } group by ProductName, City;
 }
