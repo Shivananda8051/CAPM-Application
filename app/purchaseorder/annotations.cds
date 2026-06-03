@@ -8,7 +8,8 @@ annotate service.POs with @(
         COMPANY_NAME,
         GROSS_AMOUNT,
         NET_AMOUNT,
-        TAX_AMOUNT
+        TAX_AMOUNT,
+        CURRENCY_code
     ],
 
     UI.LineItem           : [
@@ -66,12 +67,28 @@ annotate service.POs with @(
         ImageUrl      : 'https://sap.github.io/ui5-webcomponents/assets/images/HT-1000.png'
     },
 
-    UI.Facets             : [
+    UI.Facets                : [
 
         {
-            $Type : 'UI.ReferenceFacet',
+            $Type : 'UI.CollectionFacet',
             Label : 'General Information',
-            Target: '@UI.FieldGroup#General'
+            Facets: [
+                {
+                    $Type : 'UI.ReferenceFacet',
+                    Label : 'Addional Data',
+                    Target: '@UI.FieldGroup#AdditionalData'
+                },
+                {
+                    $Type : 'UI.ReferenceFacet',
+                    Label : 'Pricing Data',
+                    Target: '@UI.FieldGroup#PricingData'
+                },
+                {
+                    $Type : 'UI.ReferenceFacet',
+                    Label : 'Statuses',
+                    Target: '@UI.FieldGroup#Statuses'
+                }
+            ]
         },
 
         {
@@ -82,52 +99,55 @@ annotate service.POs with @(
 
     ],
 
-    UI.FieldGroup #General: {
-
+    UI.FieldGroup #AdditionalData: {
         $Type: 'UI.FieldGroupType',
-
         Data : [
-
             {
                 $Type: 'UI.DataField',
-                Label: 'Purchase Order',
+                Label: 'Purchase Order No',
                 Value: PO_ID
             },
             {
                 $Type: 'UI.DataField',
-                Label: 'Overall Status',
-                Value: OVERALL_STATUS
-            },
+                Value: PARTNER_GUID
+            }
+        ]
+    },
 
+    UI.FieldGroup #PricingData   : {
+        $Type: 'UI.FieldGroupType',
+        Data : [
             {
                 $Type: 'UI.DataField',
                 Label: 'Gross Amount',
                 Value: GROSS_AMOUNT
             },
-
             {
                 $Type: 'UI.DataField',
                 Label: 'Net Amount',
                 Value: NET_AMOUNT
             },
-
             {
                 $Type: 'UI.DataField',
                 Label: 'Tax Amount',
                 Value: TAX_AMOUNT
+            }
+        ]
+    },
+
+    UI.FieldGroup #Statuses      : {
+        $Type: 'UI.FieldGroupType',
+        Data : [
+            {
+                $Type: 'UI.DataField',
+                Label: 'Currency',
+                Value: CURRENCY_code
             },
             {
                 $Type: 'UI.DataField',
-                Label: 'Country',
-                Value: COUNTRY
-            },
-            {
-                $Type: 'UI.DataField',
-                Label: 'Company Name',
-                Value: COMPANY_NAME
-            },
-
-
+                Label: 'Order Status',
+                Value: OVERALL_STATUS
+            }
         ]
     }
 

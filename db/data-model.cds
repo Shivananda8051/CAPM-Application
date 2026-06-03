@@ -75,8 +75,7 @@ context tranasation {
         OVERALL_STATUS: String(2) @title: '{i18n>OVERALL_STATUS}';
         Items:Composition of many poitems on Items.PARTNER_KEY=$self;
     }
-    entity poitems : commons.Amount {
-        //key NODE_KEY:commons.id_type ;
+    entity poitems : cuid, commons.Amount {
         PARTNER_KEY : Association to purchaseOrder;
         PO_ITEM_POS: Integer @title: '{i18n>PO_ITEM_POS}';
         PRODUCT_GUID: Association to master.product;
