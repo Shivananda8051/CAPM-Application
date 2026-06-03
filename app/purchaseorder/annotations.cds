@@ -108,7 +108,8 @@ annotate service.POs with @(
             },
             {
                 $Type: 'UI.DataField',
-                Value: PARTNER_GUID
+                Label: 'Vendor Id',
+                Value: PARTNER_GUID_NODE_KEY
             }
         ]
     },
