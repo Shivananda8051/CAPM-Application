@@ -1,0 +1,24 @@
+{
+    "welcomeFile": "purchaseorder/webapp",
+    "authenticationMethod": "route",
+    "sessionTimeout": 10,
+    "routes": [
+        {
+            "source": "^/purchaseorder/webapp/(.*)$",
+            "target": "$1",
+            "localDir": "",
+            "authenticationType": "xsuaa",
+            "csrfProtection": false
+        },
+        {
+            "source": "^/user-api(.*)",
+            "authenticationType": "xsuaa",
+            "destination": "srv-api",
+            "csrfProtection": true 
+        }
+    ],
+    "logout": {
+        "logoutEndpoint": "/my/logout",
+        "logoutPage": "www.example.com/logout.html"
+    }
+}

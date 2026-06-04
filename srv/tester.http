@@ -1,37 +1,37 @@
 ### Get the service document
 
-http://localhost:4004/odata/v4/catalog
+http://localhost:4004/odata/v4/CatalogService
 
 ### Get the metadata document
-http://localhost:4004/odata/v4/catalog/$metadata
+http://localhost:4004/odata/v4/CatalogService/$metadata
 
 ### Get the entity set "EmployeSet"
-http://localhost:4004/odata/v4/catalog/employeSet
+http://localhost:4004/odata/v4/CatalogService/employeSet
 
 ### Get the entity with top 2
-http://localhost:4004/odata/v4/catalog/employeSet?$top=2
+http://localhost:4004/odata/v4/CatalogService/employeSet?$top=2
 
 ### Get the entity with top 2 and skip 1
-http://localhost:4004/odata/v4/catalog/employeSet?$top=2&$skip=1
+http://localhost:4004/odata/v4/CatalogService/employeSet?$top=2&$skip=1
 
 ### Get the entity with filter
-http://localhost:4004/odata/v4/catalog/employeSet?$filter=salaryAmount gt 90000
+http://localhost:4004/odata/v4/CatalogService/employeSet?$filter=salaryAmount gt 90000
 
 ### count the entity
-http://localhost:4004/odata/v4/catalog/employeSet/$count
+http://localhost:4004/odata/v4/CatalogService/employeSet/$count
 
 ### Get the entity with key 
-http://localhost:4004/odata/v4/catalog/employeSet/7d4d4a74-760b-4438-be2c-8a8450f1a352
+http://localhost:4004/odata/v4/CatalogService/employeSet/7d4d4a74-760b-4438-be2c-8a8450f1a352
 
 ### Get the entity POs
-http://localhost:4004/odata/v4/catalog/Pos
+http://localhost:4004/odata/v4/CatalogService/Pos
 
 ### Get the entity POs with id
-http://localhost:4004/odata/v4/catalog/Pos/POI001?$expand=PARTNER_GUID
+http://localhost:4004/odata/v4/CatalogService/Pos/POI001?$expand=PARTNER_GUID
 
 
 ### creae a new entity
-POST http://localhost:4004/odata/v4/catalog/EmployeeSet
+POST http://localhost:4004/odata/v4/CatalogService/EmployeeSet
 Content-Type: application/json
 Accept: application/json
 
@@ -54,10 +54,10 @@ Accept: application/json
 
 
 ### GET the entity 
-GET http://localhost:4004/odata/v4/catalog/employeSet
+GET http://localhost:4004/odata/v4/CatalogService/employeSet
 
 ### PATCH the entity
-PATCH http://localhost:4004/odata/v4/catalog/employeSet/7d4d4a74-760b-4438-be2c-8a8450f1a352
+PATCH http://localhost:4004/odata/v4/CatalogService/employeSet/7d4d4a74-760b-4438-be2c-8a8450f1a352
 Content-Type: application/json
 Accept: application/json
 
@@ -66,19 +66,19 @@ Accept: application/json
 }
 
 ### calling action
-POST http://localhost:4004/odata/v4/catalog/Pos/POI001/boost
+POST http://localhost:4004/odata/v4/CatalogService/Pos/POI001/boost
 Content-Type: application/json
 
 {}
 
 ### calling action with parameters
-POST http://localhost:4004/odata/v4/catalog/Pos/POI001/largestOrder
+POST http://localhost:4004/odata/v4/CatalogService/Pos/POI001/largestOrder
 Content-Type: application/json
 
 {}
 
 ### calling function with parameters(Functions are called with GET method)
-GET http://localhost:4004/odata/v4/catalog/Pos/POI001/largestOrder
+GET http://localhost:4004/odata/v4/CatalogService/Pos/POI001/largestOrder
 Content-Type: application/json
 
 {}
@@ -89,3 +89,7 @@ GET http://localhost:4004/odata/v4/MyService/ReadEmployeSrv
 
 ### Using adaptor to call custom service
 GET http://localhost:4004/v2/odata/v4/CatalogService/AddressSet
+
+### Testing After Security Implementation
+http://localhost:4004/v2/odata/v4/CatalogService/EmployeeSet
+Authorization: Basic shiva:

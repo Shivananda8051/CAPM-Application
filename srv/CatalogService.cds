@@ -1,9 +1,21 @@
 
 using { shiva.db.master as master, shiva.db.tranasation } from '../db/data-model';
-service CatalogService @(path:'CatalogService') {
+service CatalogService @(path:'CatalogService', requires: 'authenticated-user') {
+    @Capabilities : { Deletable, }
     entity BusinesspatnerSet as projection on master.businesspartner;
-    entity AddressSet as projection on master.address;
-    entity EmployeeSet as projection on master.Employee;
+    entity AddressSet as projection on master.address; 
+    entity EmployeeSet @(restrict:[
+        {
+            grant: 'READ',
+            to: 'Viewer',
+            where: 'bankName in $user.BankName'
+            
+        },
+        {
+            grant: ['READ', 'WRITE'],
+            to:'Admin'
+        }
+    ]) as projection on master.Employee;
     entity ProductSet as projection on master.product;
     @cds.redirection.target
     entity POItems as projection on tranasation.poitems;

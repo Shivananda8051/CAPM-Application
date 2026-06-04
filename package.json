@@ -11,9 +11,11 @@
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
-    "@cap-js/hana": "^2",
+    "@cap-js/hana": "^2.8.0",
     "@sap/cds": "^9.9.1",
-    "@sap/cds-odata-v2-adapter-proxy": "^1.9.21"
+    "@sap/cds-odata-v2-adapter-proxy": "^1.9.21",
+    "@sap/xssec": "^4",
+    "passport": "^0.6.0"
   },
   "devDependencies": {
     "@cap-js/sqlite": "^2.4.0",
@@ -24,7 +26,33 @@
   ],
   "cds": {
     "requires": {
-      "db": "hana"
+      "db": "hana",
+      "uaa" : {
+        "kind": "xsuaa"
+      },
+      "auth" :{
+        "[development]": {
+          "strategy": "mocked",
+          "users": {
+            "shiva": {
+              "roles" : ["Viewer"],
+              "userAttributes": {
+                "BankName": ["SBI"]
+              }
+            },
+            "anushka": {
+              "roles" : ["Admin","Viewer"],
+              "userAttributes": {
+                "BankName": ["$UNRESTRICTED"]
+              }
+            }
+          }
+        },
+        "[production]": {
+          "strategy": "JWT"
+        }
+      }
+      
     }
   }
 }
