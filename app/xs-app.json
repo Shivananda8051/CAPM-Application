@@ -6,7 +6,7 @@
         {
             "source": "^/purchaseorder/webapp/(.*)$",
             "target": "$1",
-            "localDir": "",
+            "localDir": "purchaseorder/webapp",
             "authenticationType": "xsuaa",
             "csrfProtection": false
         },
@@ -14,7 +14,7 @@
             "source": "^/user-api(.*)",
             "authenticationType": "xsuaa",
             "destination": "srv-api",
-            "csrfProtection": true 
+            "csrfProtection": true
         }
     ],
     "logout": {

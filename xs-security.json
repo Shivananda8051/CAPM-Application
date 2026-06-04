@@ -5,35 +5,34 @@
       "name": "$XSAPPNAME.Viewer",
       "description": "Able to view data"
     },
-    { 
+    {
       "name": "$XSAPPNAME.Admin",
       "description": "Able to edit data"
     }
-  ], 
+  ],
   "attributes": [
     {
-      "name": "Bankname",
-      "description": "bank name to allow role level security",
+      "name": "BankName",
+      "description": "Bank name for row level security",
       "valueType": "string"
     }
   ],
   "role-templates": [
     {
       "name": "Viewer",
-      "description": "View all the employees",
-      "default-role-name": "Viewer : autherized to read all the data",
+      "description": "View employee data",
+      "default-role-name": "Viewer",
       "scope-references": [
         "$XSAPPNAME.Viewer"
       ],
       "attribute-references": [
-        {
-          "name": "Bankname"
-        }
+        "BankName"
       ]
     },
     {
       "name": "Admin",
-      "description": "Able to edit data",
+      "description": "Edit employee data",
+      "default-role-name": "Admin",
       "scope-references": [
         "$XSAPPNAME.Admin"
       ]
@@ -47,8 +46,7 @@
     "refresh-token-validity": 1800,
     "redirect-uris": [
       "https://*.cfapps.us10-001.hana.ondemand.com"
-    ],
-    "autoapprove": "false"
+    ]
   },
-  "xsenableasyncservice": "true"
+  "xsenableasyncservice": true
 }
