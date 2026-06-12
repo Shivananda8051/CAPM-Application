@@ -4,6 +4,7 @@
   "description": "Welcome to your new CAP project.",
   "main": "index.js",
   "scripts": {
+    "start": "cds-serve",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -12,14 +13,14 @@
   "type": "commonjs",
   "dependencies": {
     "@cap-js/hana": "^2",
-    "@sap/cds": "^9.9.1",
+    "@sap/cds": "^9",
     "@sap/cds-odata-v2-adapter-proxy": "^1.9.21",
     "@sap/xssec": "^4",
     "passport": "^0.6.0"
   },
   "devDependencies": {
     "@cap-js/sqlite": "^2.4.0",
-    "@sap/cds-dk": "^9",
+    "@sap/cds-dk": "^9.9.2",
     "sqlite3": "^6.0.1"
   },
   "sapux": [

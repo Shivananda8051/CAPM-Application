@@ -1,20 +1,27 @@
 {
-    "welcomeFile": "purchaseorder/webapp",
+    "welcomeFile": "index.html",
     "authenticationMethod": "route",
     "sessionTimeout": 10,
     "routes": [
         {
-            "source": "^/purchaseorder/webapp/(.*)$",
-            "target": "$1",
-            "localDir": "purchaseorder/webapp",
+            "source": "^/odata/(.*)$",
+            "target": "/odata/$1",
+            "destination": "srv-api",
             "authenticationType": "xsuaa",
             "csrfProtection": false
         },
         {
             "source": "^/user-api(.*)",
-            "authenticationType": "xsuaa",
             "destination": "srv-api",
-            "csrfProtection": true
+            "authenticationType": "xsuaa",
+            "csrfProtection": false
+        },
+        {
+            "source": "^(.*)$",
+            "target": "$1",
+            "localDir": "purchaseorder/webapp",
+            "authenticationType": "xsuaa",
+            "csrfProtection": false
         }
     ],
     "logout": {

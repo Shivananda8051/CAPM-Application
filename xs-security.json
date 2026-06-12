@@ -45,7 +45,7 @@
     "token-validity": 900,
     "refresh-token-validity": 1800,
     "redirect-uris": [
-      "https://*.cfapps.us10-001.hana.ondemand.com"
+      "https://*.cfapps.us10-001.hana.ondemand.com/login/callback"
     ]
   },
   "xsenableasyncservice": true
