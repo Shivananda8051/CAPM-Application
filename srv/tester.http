@@ -87,6 +87,8 @@ Content-Type: application/json
 ### custom service 
 GET http://localhost:4004/odata/v4/MyService/ReadEmployeSrv
 
+GET http://localhost:4004/odata/v4/MyService/ReadEmployeSrv
+
 ### Using adaptor to call custom service
 GET http://localhost:4004/v2/odata/v4/CatalogService/AddressSet
 
